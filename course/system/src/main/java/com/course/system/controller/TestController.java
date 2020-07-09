@@ -18,6 +18,6 @@ public class TestController {
 
     @RequestMapping("/test")
     public List<Test> test(){
-        return this.testService.test();
+        return this.testService.list();
     }
 }
