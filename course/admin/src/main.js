@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import App from './app.vue'
 import router from './router'
+import axios from 'axios'
 
 Vue.config.productionTip = false
+Vue.prototype.$ajax = axios;
+
 // import可以是对象，可以接口
 new Vue({
   router,
