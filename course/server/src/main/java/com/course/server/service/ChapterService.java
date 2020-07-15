@@ -10,6 +10,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -31,25 +32,43 @@ public class ChapterService {
 
         pageDto.setTotal(pageInfo.getTotal());
 
-        List<ChapterDto> chapterDtoList = new ArrayList<>();
+//        List<ChapterDto> chapterDtoList = new ArrayList<>();
 
-        for(int i=0,l = chapterList.size();i<l;i++){
-            Chapter chapter = chapterList.get(i);
-            ChapterDto chapterDto = new ChapterDto();
-            BeanUtils.copyProperties(chapter,chapterDto);
-            chapterDtoList.add(chapterDto);
-        }
+//        for(int i=0,l = chapterList.size();i<l;i++){
+//            Chapter chapter = chapterList.get(i);
+//            ChapterDto chapterDto = new ChapterDto();
+//            BeanUtils.copyProperties(chapter,chapterDto);
+//            chapterDtoList.add(chapterDto);
+//        }
 
+        List<ChapterDto> chapterDtoList = CopyUtil.copyList(chapterList,ChapterDto.class);
         pageDto.setList(chapterDtoList);
 
     }
 
     public void save(ChapterDto chapterDto){
-        chapterDto.setId(UuidUtil.getShortUuid());
-        Chapter chapter = new Chapter();
-        BeanUtils.copyProperties(chapterDto,chapter);
-        this.chapterMapper.insert(chapter);
+        Chapter chapter = CopyUtil.copy(chapterDto,Chapter.class);
+        if(StringUtils.isEmpty(chapterDto.getId())){
+            this.insert(chapter);
+        }else{
+            this.update(chapter);
+        }
 
     }
 
+    public void insert(Chapter chapter){
+        chapter.setId(UuidUtil.getShortUuid());
+        this.chapterMapper.insert(chapter);
+    }
+
+    private void update(Chapter chapter){
+        this.chapterMapper.updateByPrimaryKey(chapter);
+    }
+
+    public void delete(String id) {
+
+        chapterMapper.deleteByPrimaryKey(id);
+
+
+    }
 }
