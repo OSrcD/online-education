@@ -1,4 +1,4 @@
-package com.course.server.service;
+package com.course.server.util;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.CollectionUtils;
