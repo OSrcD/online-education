@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="system" />
-        <module name="server" />
         <module name="gateway" />
         <module name="business" />
+        <module name="system" />
         <module name="eureka" />
+        <module name="server" />
+        <module name="generator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -18,6 +19,7 @@
       <module name="course" target="1.8" />
       <module name="eureka" target="1.8" />
       <module name="gateway" target="1.8" />
+      <module name="generator" target="1.8" />
       <module name="server" target="1.8" />
       <module name="system" target="1.8" />
     </bytecodeTargetLevel>
@@ -28,6 +30,7 @@
       <module name="course" options="" />
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="generator" options="-parameters" />
       <module name="server" options="-parameters" />
       <module name="system" options="-parameters" />
     </option>
