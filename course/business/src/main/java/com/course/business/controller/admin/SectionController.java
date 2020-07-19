@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/Section")
+@RequestMapping("/admin/section")
 public class SectionController {
 
     private static final Logger LOG = LoggerFactory.getLogger(SectionController.class);
@@ -23,7 +23,7 @@ public class SectionController {
 
 
     @Resource
-    private SectionService SectionService;
+    private SectionService sectionService;
 
     /**
      * 列表查询
@@ -35,7 +35,7 @@ public class SectionController {
 
         ResponseDto responseDto = new ResponseDto();
 
-        this.SectionService.list(pageDto);
+        this.sectionService.list(pageDto);
 
         responseDto.setContent(pageDto);
 
@@ -44,17 +44,17 @@ public class SectionController {
 
     /**
      * 保存，id有值时更新，无值时新增
-     * @param SectionDto
+     * @param sectionDto
      * @return
      */
     @PostMapping("/save")
-    public ResponseDto save(@RequestBody SectionDto SectionDto){
+    public ResponseDto save(@RequestBody SectionDto sectionDto){
 
         // 保存校验
         ResponseDto responseDto = new ResponseDto();
 
-        SectionService.save(SectionDto);
-        responseDto.setContent(SectionDto);
+        sectionService.save(sectionDto);
+        responseDto.setContent(sectionDto);
         return responseDto;
     }
 
@@ -66,7 +66,7 @@ public class SectionController {
     @DeleteMapping("/delete/{id}")
     public ResponseDto delete(@PathVariable String id){
         ResponseDto responseDto = new ResponseDto();
-        SectionService.delete(id);
+        sectionService.delete(id);
         return responseDto;
     }
 }

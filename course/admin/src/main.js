@@ -45,3 +45,5 @@ new Vue({
  * 5、 因为组件的数据是放在html文件的，里面自有引入了css、js外部文件
  * 6、 总结：先执行index.html，后执行main.js、后执行index.html
  */
+
+console.log("环境：",process.env.NODE_ENV)
