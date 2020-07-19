@@ -19,7 +19,7 @@ import java.util.List;
 public class SectionService {
 
     @Resource
-    private SectionMapper sectionMapper;
+    private SectionMapper SectionMapper;
 
     /**
      * 列表查询
@@ -27,48 +27,48 @@ public class SectionService {
      */
     public void list(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
-        SectionExample sectionExample = new SectionExample();
-        List<Section> sectionList = this.sectionMapper.selectByExample(sectionExample);
-        PageInfo<Section> pageInfo = new PageInfo<>(sectionList);
+        SectionExample SectionExample = new SectionExample();
+        List<Section> SectionList = this.SectionMapper.selectByExample(SectionExample);
+        PageInfo<Section> pageInfo = new PageInfo<>(SectionList);
 
         pageDto.setTotal(pageInfo.getTotal());
 
 
 
-        List<SectionDto> sectionDtoList = CopyUtil.copyList(sectionList,SectionDto.class);
-        pageDto.setList(sectionDtoList);
+        List<SectionDto> SectionDtoList = CopyUtil.copyList(SectionList,SectionDto.class);
+        pageDto.setList(SectionDtoList);
 
     }
 
     /**
      * 保存，id有值时更新，无值时新增
-     * @param sectionDto
+     * @param SectionDto
      */
-    public void save(SectionDto sectionDto){
-        Section section = CopyUtil.copy(sectionDto,Section.class);
-        if(StringUtils.isEmpty(sectionDto.getId())){
-            this.insert(section);
+    public void save(SectionDto SectionDto){
+        Section Section = CopyUtil.copy(SectionDto,Section.class);
+        if(StringUtils.isEmpty(SectionDto.getId())){
+            this.insert(Section);
         }else{
-            this.update(section);
+            this.update(Section);
         }
 
     }
 
     /**
      * 新增
-     * @param section
+     * @param Section
      */
-    public void insert(Section section){
-        section.setId(UuidUtil.getShortUuid());
-        this.sectionMapper.insert(section);
+    public void insert(Section Section){
+        Section.setId(UuidUtil.getShortUuid());
+        this.SectionMapper.insert(Section);
     }
 
     /**
      * 更新
-     * @param section
+     * @param Section
      */
-    private void update(Section section){
-        this.sectionMapper.updateByPrimaryKey(section);
+    private void update(Section Section){
+        this.SectionMapper.updateByPrimaryKey(Section);
     }
 
     /**
@@ -77,7 +77,7 @@ public class SectionService {
      */
     public void delete(String id) {
 
-        sectionMapper.deleteByPrimaryKey(id);
+        SectionMapper.deleteByPrimaryKey(id);
 
 
     }

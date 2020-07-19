@@ -1,4 +1,4 @@
-package com.course.business.controller.admin;
+package com.course.${module}.controller.admin;
 
 
 import com.course.server.domain.${Domain};
@@ -19,7 +19,7 @@ import java.util.List;
 public class ${Domain}Controller {
 
     private static final Logger LOG = LoggerFactory.getLogger(${Domain}Controller.class);
-    public static final String BUSINESS_NAME = "小节";
+    public static final String BUSINESS_NAME = "${tableNameCn}";
 
 
     @Resource
