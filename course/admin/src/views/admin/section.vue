@@ -39,7 +39,7 @@
         <td>{{section.chapterId}}</td>
         <td>{{section.video}}</td>
         <td>{{section.time}}</td>
-        <td>{{section.charge}}</td>
+        <td>{{SECTION_CHARGE | optionKV(section.charge)}}</td>
         <td>{{section.sort}}</td>
         <td>
           <div class="hidden-sm hidden-xs btn-group">
@@ -97,7 +97,9 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">收费</label>
                   <div class="col-sm-10">
-                    <input v-model="section.charge" class="form-control">
+                    <select v-model="section.charge" class="form-control">
+                      <option v-for="o in SECTION_CHARGE" v-bind:value="o.key">{{o.value}}</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
@@ -126,11 +128,12 @@
 
   export default {
     components: {Pagination},
-    name: 'section',
+    name: 'business-section',
     data: function(){
       return {
         section: {},
-        sections: []
+        sections: [],
+        SECTION_CHARGE: SECTION_CHARGE,
       }
     },
     mounted: function(){
