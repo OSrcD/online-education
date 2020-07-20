@@ -11,9 +11,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Date;
 
 @Service
 public class SectionService {
@@ -28,6 +28,8 @@ public class SectionService {
     public void list(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         SectionExample sectionExample = new SectionExample();
+        sectionExample.setOrderByClause("sort asc");
+
         List<Section> sectionList = this.sectionMapper.selectByExample(sectionExample);
         PageInfo<Section> pageInfo = new PageInfo<>(sectionList);
 
@@ -59,6 +61,9 @@ public class SectionService {
      * @param section
      */
     public void insert(Section section){
+        Date now = new Date();
+        section.setCreatedAt(now);
+        section.setUpdatedAt(now);
         section.setId(UuidUtil.getShortUuid());
         this.sectionMapper.insert(section);
     }
@@ -68,6 +73,7 @@ public class SectionService {
      * @param section
      */
     private void update(Section section){
+        section.setUpdatedAt(new Date());
         this.sectionMapper.updateByPrimaryKey(section);
     }
 
