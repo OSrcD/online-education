@@ -154,7 +154,7 @@
             || !Validator.require(_this.${domain}.${field.nameHump},"${field.nameCn}")
             </#if>
             <#if (field.length > 0)>
-            || !Validator.length(_this.${domain}.${field.nameHump},"${field.nameCn}",1,${field.length})
+            || !Validator.length(_this.${domain}.${field.nameHump},"${field.nameCn}",1,${field.length?c})
             </#if>
           </#if>
         </#list>
